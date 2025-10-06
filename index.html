@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties File Comparator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 i18n Properties File Comparator</h1>
+            <p>Compare two .properties files and identify missing translation keys</p>
+        </header>
+
+        <main>
+            <div class="file-selection-section">
+                <div class="file-input-group">
+                    <div class="file-card">
+                        <h3>File 1</h3>
+                        <div class="file-upload">
+                            <input type="file" id="file1" accept=".properties" />
+                            <label for="file1" class="file-label">
+                                <span class="file-icon">📁</span>
+                                <span class="file-text">Choose .properties file</span>
+                            </label>
+                            <div id="file1-name" class="file-name"></div>
+                        </div>
+                    </div>
+
+                    <div class="vs-divider">VS</div>
+
+                    <div class="file-card">
+                        <h3>File 2</h3>
+                        <div class="file-upload">
+                            <input type="file" id="file2" accept=".properties" />
+                            <label for="file2" class="file-label">
+                                <span class="file-icon">📁</span>
+                                <span class="file-text">Choose .properties file</span>
+                            </label>
+                            <div id="file2-name" class="file-name"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="compareBtn" class="compare-btn" disabled>Compare Files</button>
+            </div>
+
+            <div id="results" class="results-section" style="display: none;">
+                <div class="results-header">
+                    <h2>Comparison Results</h2>
+                    <button id="clearBtn" class="clear-btn">Clear & Start Over</button>
+                </div>
+
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Keys in File 1</div>
+                        <div class="stat-value" id="totalKeys1">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Total Keys in File 2</div>
+                        <div class="stat-value" id="totalKeys2">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Common Keys</div>
+                        <div class="stat-value" id="commonKeys">0</div>
+                    </div>
+                </div>
+
+                <div class="view-toggle">
+                    <button id="missingViewBtn" class="toggle-btn">Differences</button>
+                    <button id="commonViewBtn" class="toggle-btn">Common Keys</button>
+                </div>
+
+                <div id="missingKeysView" class="comparison-results" style="display: none;">
+                    <div class="result-column">
+                        <h3>Missing in <span id="locale1Display"></span> (<span id="missingCount1">0</span>)</h3>
+                        <p class="result-description">Keys present in File 2 but missing in File 1</p>
+                        <div id="missingInFile1" class="key-list"></div>
+                    </div>
+
+                    <div class="result-column">
+                        <h3>Missing in <span id="locale2Display"></span> (<span id="missingCount2">0</span>)</h3>
+                        <p class="result-description">Keys present in File 1 but missing in File 2</p>
+                        <div id="missingInFile2" class="key-list"></div>
+                    </div>
+                </div>
+
+                <div id="commonKeysView" class="common-keys-section" style="display: none;">
+                    <div class="common-keys-header">
+                        <h3>Common Keys (<span id="commonKeysCount">0</span> keys)</h3>
+                        <p class="result-description">Keys present in both files with their values</p>
+                    </div>
+                    <div id="commonKeysList" class="common-keys-list"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built for comparing i18n .properties files</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
